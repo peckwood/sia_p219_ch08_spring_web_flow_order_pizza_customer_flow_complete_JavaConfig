@@ -24,10 +24,10 @@
 		<sf:label path="customer.state">state</sf:label>
 		<sf:input path="customer.state" />
 		<br />
-		<sf:label path="customer.zipCode">zipCode</sf:label>
+		<sf:label path="customer.zipCode" >zipCode(75075 for free delivery)</sf:label>
 		<sf:input path="customer.zipCode" />
 		<br />
-		<sf:label path="customer.phoneNumber"></sf:label>
+		<sf:label path="customer.phoneNumber" value="">Phone number</sf:label>
 		<sf:input path="customer.phoneNumber" />
 		<br />
 		<input type="submit" name="_eventId_register" value="Register" />

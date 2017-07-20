@@ -17,7 +17,12 @@
 
 	<subflow-state id="order" subflow="pizza/order">
 		<input name="order" value="order" />
-		<transition on="orderCreated" to="thankYou"></transition>
+		<transition on="orderCreated" to="payment"></transition>
+	</subflow-state>
+	
+	<subflow-state id="payment" subflow="pizza/payment">
+		<input name="order" value="order" />
+		<transition on="paymentTaken" to="thankYou"></transition>
 	</subflow-state>
 
 	<view-state id="thankYou">
@@ -27,7 +32,6 @@
 
 	<!-- end-state must be before global-transitions -->
 	<end-state id="endState"></end-state>
-
 
 	<global-transitions>
 		<transition on="cancel" to="endState"></transition>

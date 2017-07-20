@@ -5,7 +5,7 @@
 
   <body>
 	<h2>Thank you for your order!</h2>
-	
+	<p>3 ways to send the same eventId("finished"):</p>
 <form:form>
 	<input type="hidden" name="_flowExecutionKey" 
 	       value="${flowExecutionKey}"/>
