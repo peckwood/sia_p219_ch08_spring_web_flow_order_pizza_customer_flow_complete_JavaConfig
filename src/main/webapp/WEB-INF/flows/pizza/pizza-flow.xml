@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	<!-- When you declare a variable using the <var> element, the variable is 
+		always flowscoped in the flow defining the variable -->
+	<var name="order" class="pizza.domain.Order" />
+
+	<!-- flow's id when configured using flow-location-pattern ("/**/*-flow.xml") 
+		and base-path("/WEB-INF/flows") flow myFlow's located at [basePath]/a/b/myFlow/myFlow-flow.xml 
+		(myFlow.xml must be in myFlow folder) myFlow's ID is a/b/myFlow -->
+	<subflow-state id="customer" subflow="pizza/customer">
+		<input name="order" value="order" />
+		<transition on="customerReady" to="order"></transition>
+	</subflow-state>
+
+	<subflow-state id="order" subflow="pizza/order">
+		<input name="order" value="order" />
+		<transition on="orderCreated" to="thankYou"></transition>
+	</subflow-state>
+
+	<view-state id="thankYou">
+		<transition to="endState"></transition>
+		<transition on="orderCreated" to="thankYou"></transition>
+	</view-state>
+
+	<!-- end-state must be before global-transitions -->
+	<end-state id="endState"></end-state>
+
+
+	<global-transitions>
+		<transition on="cancel" to="endState"></transition>
+	</global-transitions>
+
+</flow>

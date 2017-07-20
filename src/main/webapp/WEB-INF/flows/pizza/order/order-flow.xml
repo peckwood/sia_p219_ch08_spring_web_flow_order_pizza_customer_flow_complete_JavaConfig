@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<var name="pizza" class="pizza.domain.Pizza" />
+	<!-- <var name="toppingsList" class="java.util.ArrayList" /> -->
+	<!-- if you are receiving a input from parent flow, omit the value attribute -->
+	<input name="order" required="true" />
+
+	<view-state id="showOrder" model="order" view="showOrder.jsp">
+		<transition on="createPizza" to="createPizza"></transition>
+		<transition on="checkout" to="orderCreated"></transition>
+		<transition on="cancel" to="cancel"></transition>
+	</view-state>
+
+	<view-state id="createPizza" model="pizza">
+		<on-entry>
+			<!-- viewScope is the scope of the variable-->
+			<set name="viewScope.toppingsList" value="T(pizza.domain.Topping).asList()"></set>
+			
+			<!-- create a new pizza for each createPizza, or you are just changing the same pizza -->
+			<set name="pizza" value="new pizza.domain.Pizza()"></set>
+			<!-- evaluate version: -->
+			<!-- <evaluate result="viewScope.toppingsList" expression="T(pizza.domain.Topping).asList()" /> -->
+		</on-entry>
+		<transition on="addPizza" to="showOrder">
+			<evaluate expression="order.addPizza(pizza)"></evaluate>
+		</transition>
+		<transition on="cancel" to="showOrder"></transition>
+	</view-state>
+
+	<end-state id="orderCreated"></end-state>
+	<end-state id="cancel"></end-state>
+
+</flow>
