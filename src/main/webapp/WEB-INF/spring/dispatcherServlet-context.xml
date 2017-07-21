@@ -22,6 +22,6 @@
 
   <resources mapping="/resources/**" location="/resources/" />
   
-  <view-controller path="/" view-name="home" />  
+  <view-controller path="/" view-name="home" />
 
 </beans:beans>
