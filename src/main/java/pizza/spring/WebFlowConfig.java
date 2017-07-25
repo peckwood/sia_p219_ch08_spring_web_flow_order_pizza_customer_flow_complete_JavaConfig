@@ -52,9 +52,9 @@ public class WebFlowConfig extends AbstractFlowConfiguration {
 
 	@Bean 
 	@Autowired
-	public FlowHandlerMapping flowHandlerMapping(FlowDefinitionRegistry flowDefinitionRegistry) {
+	public FlowHandlerMapping flowHandlerMapping(FlowDefinitionRegistry flowRegistry) {
 	    FlowHandlerMapping flowHandlerMapping = new FlowHandlerMapping();
-	    flowHandlerMapping.setFlowRegistry(flowDefinitionRegistry);
+	    flowHandlerMapping.setFlowRegistry(flowRegistry);
 	    flowHandlerMapping.setOrder(0);
 	    return flowHandlerMapping;
 	}
